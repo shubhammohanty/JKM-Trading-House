@@ -1,2 +1,2 @@
 import datetime
-import mysql.connector()
+import mysql.connector
