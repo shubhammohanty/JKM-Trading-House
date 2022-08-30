@@ -90,3 +90,6 @@ def showswitch():
     except:
         print("Failed to display data in table switches")
     con.close()
+
+def main_menu():
+    pass
