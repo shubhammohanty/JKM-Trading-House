@@ -1,9 +1,6 @@
 from datetime import date
 import mysql.connector as MySQL
 
-def main_menu():
-    pass
-
 #-----------------------------------------Owner Side--------------------------------------------
 def owner_menu():
     print(""" 
@@ -165,7 +162,7 @@ def showorders():
             cursor.execute(query)
             con.commit()
             print("Order confirmed for ID ",choice)
-            cont = input("Enter q or Q to exit and any othr key to add more: ")
+            cont = input("Enter q or Q to exit and any other key to confirm more orders: ")
             if cont == 'q' or cont == 'Q':
                 print("Exiting...")
                 print(" ")
@@ -173,8 +170,6 @@ def showorders():
     except:
             print("there is some error")
     con.close()
-
-
 
 
 
@@ -216,8 +211,59 @@ def showitems():
     con.close()
 
 def createorder():
-    pass
+    params = {
+    "host":"127.0.0.1", 
+    "user":"root", 
+    "password":"admin", 
+    "database":"jkm"
+    }
+    try:
+        con = MySQL.connect(**params)
+        cursor = con.cursor()
+        while True:
+            product = input("Enter the product name: ")
+            partyname = input("Enter your partyname: ")
+            quantity = int(input("Enter the quantity: "))
+            requiredby = input("Enter the rough date by which you want the order : ")
+            query = 'insert into orders (product, partyname,quantity,requiredby,status) values(' + "'" + str(product) + "'" + ',' + "'" + str(partyname) + "'" + ',' + str(quantity) + ',' + "'" + str(requiredby) + "'" + ',' + '"inititalized"' + ')'
+            cursor.execute(query)
+            con.commit()
+            print("Order created")
+            cont = input("Enter q or Q to exit and any othr key to add more: ")
+            if cont == 'q' or cont == 'Q':
+                print("Exiting...")
+                print(" ")
+                break
+    except:
+            print("there is some error")
+    con.close()
 
 def client_menu():
     pass
 
+def pendingorders():
+    params = {
+    "host":"127.0.0.1", 
+    "user":"root", 
+    "password":"admin", 
+    "database":"jkm"
+    }
+    choice = input("Enter your party name: ")
+    try:
+        con = MySQL.connect(**params)
+        cursor = con.cursor()
+        query = "SELECT * FROM orders where partyname=" + "'" + choice + "' and status!='confirmed'" 
+        cursor.execute(query)
+        orders = cursor.fetchall()
+        print(['ID','Product','Partyname','Quantity','Date Of Requirement','Status'])
+        for i in orders:
+            print(i)
+        print(" ")
+    except:
+        print("there is some error")
+    con.close()
+
+
+#----------------------------------------Main--------------------------------------------------------
+def mainmenu():
+    pass
