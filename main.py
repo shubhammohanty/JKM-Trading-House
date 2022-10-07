@@ -316,7 +316,7 @@ def mainmenu():
     3) Exit""")
     choice=int(input("Enter the corresponding menu number to proceed:"))
     if choice ==1:
-        passw = input("Enter the owner credential to login")
+        passw = input("Enter the owner credential to login: ")
         if passw == "owner@2022":
             owner_menu()
         else:
