@@ -1,3 +1,4 @@
+
 from datetime import date
 import mysql.connector as MySQL
 
@@ -8,7 +9,9 @@ def owner_menu():
     2) Show Orders
     3) Add Wires
     4) Add Switches
-    5) Add Doorbells""")
+    5) Add Doorbells
+    6) Go back to Main Menu
+    """)
     choice = int(input("Enter the corresponding menu number to proceed: "))
     if choice == 1:
         print(" ")
@@ -25,6 +28,9 @@ def owner_menu():
     elif choice ==5:
         print(" ")
         addbell()
+    elif choice ==6:
+        print(" ")
+        mainmenu()
     else:
         print("Invalid Input. Kindly enter a correct input value.")
     
@@ -52,6 +58,7 @@ def addwire():
     except:
         print("Failed to insert into MySQL table")
     con.close()
+    owner_menu()
 
 def addswitch():
     brand = input("Enter the brand of switch: ")
@@ -75,6 +82,7 @@ def addswitch():
     except:
         print("Failed to insert into MySQL table")
     con.close()
+    owner_menu()
     
 def addbell():
     brand = input("Enter the brand of bell: ")
@@ -97,6 +105,7 @@ def addbell():
     except:
         print("Failed to insert into MySQL table")
     con.close()
+    owner_menu()
 
 def showstockowner():
     params = {
@@ -139,6 +148,7 @@ def showstockowner():
     except:
         print("Failed to display data in stock")
     con.close()
+    owner_menu()
 
 def showorders():
     params = {
@@ -170,6 +180,7 @@ def showorders():
     except:
             print("there is some error")
     con.close()
+    owner_menu()
 
 
 
@@ -209,6 +220,7 @@ def showitems():
     except:
         print("Failed to display data in table stock")
     con.close()
+    client_menu()
 
 def createorder():
     params = {
@@ -237,9 +249,30 @@ def createorder():
     except:
             print("there is some error")
     con.close()
+    client_menu()
 
 def client_menu():
-    pass
+    print("""
+    1) Create Order
+    2) View Pending Orders
+    3) Show Available Items
+    4) Go back to Main Menu
+    """)
+    choice = int(input("Enter the corresponding menu number to proceed: "))
+    if choice == 1:
+        print(" ")
+        createorder()
+    elif choice ==2:
+        print(" ")
+        pendingorders()
+    elif choice == 3:
+        print(" ")
+        showitems()
+    elif choice == 4:
+        print(" ")
+        mainmenu()
+    else:
+        print("Invalid Input. Kindly enter a correct input value.")
 
 def pendingorders():
     params = {
@@ -262,8 +295,39 @@ def pendingorders():
     except:
         print("there is some error")
     con.close()
+    client_menu()
 
 
 #----------------------------------------Main--------------------------------------------------------
 def mainmenu():
-    pass
+    print("""
+       # #    # #     #       #######                                            #     #                             
+       # #   #  ##   ##          #    #####    ##   #####  # #    #  ####        #     #  ####  #    #  ####  ###### 
+       # #  #   # # # #          #    #    #  #  #  #    # # ##   # #    #       #     # #    # #    # #      #      
+       # ###    #  #  # #####    #    #    # #    # #    # # # #  # #      ##### ####### #    # #    #  ####  #####  
+ #     # #  #   #     #          #    #####  ###### #    # # #  # # #  ###       #     # #    # #    #      # #      
+ #     # #   #  #     #          #    #   #  #    # #    # # #   ## #    #       #     # #    # #    # #    # #      
+  #####  #    # #     #          #    #    # #    # #####  # #    #  ####        #     #  ####   ####   ####  ###### 
+                                                                                                                     
+    """)
+    print("""Use the Apllication as 
+    1) Owner
+    2) Client
+    3) Exit""")
+    choice=int(input("Enter the corresponding menu number to proceed:"))
+    if choice ==1:
+        passw = input("Enter the owner credential to login")
+        if passw == "owner@2022":
+            owner_menu()
+        else:
+            print("Incorrect Credentials")
+            mainmenu()
+    elif choice ==2:
+        client_menu()
+    elif choice ==3:
+        pass
+    else:
+        print("Enter a correct value:")
+        mainmenu()
+
+

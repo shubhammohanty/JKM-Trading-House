@@ -1,0 +1,16 @@
+## RUN THESE QUERIES ONE BY ONE ON MYSQL CLIENT INSTANCE BEFORE RUNNING main.py ####################### 
+
+
+create database jkm;
+
+use jkm;
+
+create table wires(brand varchar(255),length int,gauge int,bundles int,dateof_purchase date);
+
+create table switches(brand varchar(255),amp int,pieces int,dateof_purchase date);
+
+create table bells(brand varchar(255),power varchar(255),quantity int, dateof_purchase date);
+
+create table orders(ID int not null auto_increment,product varchar(255),partyname varchar(255),quantity int,requiredby date,status varchar(30), primary key (ID));
+
+insert into orders values(1,'NA','NA',0,'2000-01-01','NA');
