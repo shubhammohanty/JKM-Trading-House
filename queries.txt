@@ -5,7 +5,7 @@ create database jkm;
 
 use jkm;
 
-create table wires(brand varchar(255),length int,gauge int,bundles int,dateof_purchase date);
+create table wires(brand varchar(255),length int,gauge float,bundles int,dateof_purchase date);
 
 create table switches(brand varchar(255),amp int,pieces int,dateof_purchase date);
 
