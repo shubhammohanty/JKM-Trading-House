@@ -38,7 +38,7 @@ def owner_menu():
 def addwire():
     brand = input("Enter the brand of wire: ")
     length = int(input("Enter the length of the wire(in ft): "))
-    gauge = int(input("Enter the gauge of wire: "))
+    gauge = float(input("Enter the gauge of wire: "))
     bundles = int(input("Enter the bundles of wire: "))
     dateof_purchase = date.today()
     params = {
