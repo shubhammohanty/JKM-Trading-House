@@ -2,7 +2,7 @@
 from datetime import date
 import mysql.connector as MySQL
 
-#-----------------------------------------Owner Side--------------------------------------------
+#-----------------------------------------Owner- Side--------------------------------------------
 def owner_menu():
     print(""" 
     1) Show Stock
